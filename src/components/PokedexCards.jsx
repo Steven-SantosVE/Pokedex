@@ -22,7 +22,7 @@ function PokedexCards(){
             // console.log(offset)
         }else{
             const url = "https://pokeapi.co/api/v2/pokemon/";
-            fetch(url + `${e.target.value}`)
+            fetch(url + `${e.target.value.toLowerCase()}`)
                 .then((response) => response.json())
                 .then((data) => {
                 setPokemon((prevPokemon) => [...prevPokemon, data]);
