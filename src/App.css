@@ -23,10 +23,18 @@ body{
 
 .cards-container{
     width: 100vw;
+    height: auto;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    overflow-y: auto;
+}
+
+@media (max-width: 612px){
+    .cards-container{
+        display: flex;
+        margin: 0 auto;
+    }
 }
 
 .image-container:hover{
@@ -38,12 +46,31 @@ body{
     /* color: white; */
     margin: 1rem;
     background-color: rgb(255, 255, 255);
-    width: 15vw;
-    height: 45vh;
+    width: 20vw;
+    height: 100%;
     border-radius: .5rem;
     text-align: center;
     align-items: center;
     transition: .1s ease-in-out;
+}
+
+
+@media (max-width: 848px){
+    .image-container{
+        width: 30vw;
+    }
+}
+
+@media (max-width: 394px){
+    .image-container{
+        width: 90vw;
+    }
+}
+
+@media (max-width: 1000px){
+    .image-container{
+        width: 40vw;
+    }
 }
 
 .sprite-container{
@@ -87,37 +114,19 @@ body{
     background-color: var(--fire);
 }
 
-.generation-filter{
-    margin: 1rem;
-    width: 100vw;
-    height: 8vh;
-    display: flex;
-    justify-content: center;
-}
-
-.gen-buttons{
-    padding: 1rem;
-    margin: .5rem;
-    border-radius: 1rem;
-    border-style: none;
-    border-width: 0px;
-    cursor: pointer;
-    transition: .1s ease-in-out;
-    background-color: white;
-}
-
 .gen-buttons:hover{
     background-color: var(--water);
 }
 
 .navbar-pokedex{
     width: 100vw;
-    height: 10vh;
+    height: 80px;
     margin: 0;
     display: flex;
     /* background-color:rgb(197, 197, 197); */
     background-image: linear-gradient(45deg, var(--fire), var(--water), var(--grass));
     justify-content: space-between;
+    position: sticky;
 }
 
 .navbar-items{
@@ -142,7 +151,7 @@ body{
 
 .navbar-items > a > li{
     list-style: none;
-    /* color: rgb(255, 255, 255); */
+    color: none;
     margin: 0 auto;
 }
 
@@ -153,5 +162,6 @@ body{
     border-style:none ;
     margin: auto 1rem;
     width: 20%;
-    height: 45%
+    height: 45%;
+    border-radius: 1rem;
 }
