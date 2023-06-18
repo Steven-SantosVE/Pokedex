@@ -14,6 +14,25 @@ function PokedexCards(){
         setPokemon([]); // Reset the `pokemon` state to an empty array
     };
 
+    const handleSearch = (e) => {
+        cleanData()
+
+        if (e.target.value == "") {
+            LoadPokemon(offset, limit)
+            // console.log(offset)
+        }else{
+            const url = "https://pokeapi.co/api/v2/pokemon/";
+            fetch(url + `${e.target.value}`)
+                .then((response) => response.json())
+                .then((data) => {
+                setPokemon((prevPokemon) => [...prevPokemon, data]);
+                })
+                .catch((error) => {
+                console.log("Error fetching Pokemon:", error);
+                });
+            }
+    };
+
     function next(){
         if (offset < 1281) {
             offset += 9;
@@ -49,25 +68,7 @@ function PokedexCards(){
             });
     };
 
-    const handleSearch = (e) => {
-        cleanData()
-
-        if (e.target.value == "") {
-            LoadPokemon(offset, limit)
-            return;
-            // console.log(offset)
-        }else{
-            const url = "https://pokeapi.co/api/v2/pokemon/";
-            fetch(url + `${e.target.value}`)
-                .then((response) => response.json())
-                .then((data) => {
-                setPokemon((prevPokemon) => [...prevPokemon, data]);
-                })
-                .catch((error) => {
-                console.log("Error fetching Pokemon:", error);
-                });
-        }
-    };
+    
 
     const LoadPokemon = async (offset, limit) => {
         for (let i = offset; i <= offset + limit; i++) {
@@ -85,11 +86,9 @@ function PokedexCards(){
         }
     }, [])
 
-
     return(
         <>
-            <NavbarPokedex value={""} search={handleSearch} />
-
+            <NavbarPokedex search={handleSearch} />
             <section className="cards-container" id="pokedex">
                 {pokemon.map((data, index) => (
                 <div className="image-container" key={index}>
@@ -106,9 +105,7 @@ function PokedexCards(){
                     <p>SPEED: {data.stats[5].base_stat}</p>
                 </div>
                  ))}
-                 
             </section>
-
             <div className="button-container">
                 <button 
                 id="prev-button"
@@ -117,7 +114,6 @@ function PokedexCards(){
                 >
                     {'Previous Page'}
                 </button> 
-
                 <button 
                 id="next-button"
                 className="buttons"

@@ -20,7 +20,7 @@ function NavbarPokedex({value, search}){
             placeholder="FIND YOUR FAVOURITE POKEMON" 
             className="pokemon-searchbar"
             onChange={search}
-            value={value}
+            // value={value}
             >
             </input>
         </nav>

@@ -29,6 +29,11 @@ body{
     overflow-y: auto;
 }
 
+.image-container:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
 .image-container{
     /* color: white; */
     margin: 1rem;
@@ -38,6 +43,7 @@ body{
     border-radius: .5rem;
     text-align: center;
     align-items: center;
+    transition: .1s ease-in-out;
 }
 
 .sprite-container{
