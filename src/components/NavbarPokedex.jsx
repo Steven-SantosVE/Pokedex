@@ -1,10 +1,10 @@
 import React from "react";
 
-function NavbarPokedex(){
+function NavbarPokedex({value, search}){
     return(
         <nav className="navbar-pokedex">
             <ul className="navbar-items">
-                <a href="#">
+                <a href="#pokedex">
                     <li>POKEDEX</li>
                 </a>
                 <a href="#">
@@ -19,6 +19,8 @@ function NavbarPokedex(){
             type="text" 
             placeholder="FIND YOUR FAVOURITE POKEMON" 
             className="pokemon-searchbar"
+            onChange={search}
+            value={value}
             >
             </input>
         </nav>

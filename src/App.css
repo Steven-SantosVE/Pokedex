@@ -142,7 +142,7 @@ body{
 
 .pokemon-searchbar{
     font-size: 1rem;
-    color: white;
+    /* color: white; */
     background-color: rgb(255, 255, 255);
     border-style:none ;
     margin: auto 1rem;

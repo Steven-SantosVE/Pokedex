@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import GenerationFilterButton from "./GenerationFilterButton";
 import NavbarPokedex from "./NavbarPokedex";
 import "./PkmonType.css"
 
@@ -48,7 +47,27 @@ function PokedexCards(){
             .catch((error) => {
             console.log("Error fetching Pokemon:", error);
             });
-        };
+    };
+
+    const handleSearch = (e) => {
+        cleanData()
+
+        if (e.target.value == "") {
+            LoadPokemon(offset, limit)
+            return;
+            // console.log(offset)
+        }else{
+            const url = "https://pokeapi.co/api/v2/pokemon/";
+            fetch(url + `${e.target.value}`)
+                .then((response) => response.json())
+                .then((data) => {
+                setPokemon((prevPokemon) => [...prevPokemon, data]);
+                })
+                .catch((error) => {
+                console.log("Error fetching Pokemon:", error);
+                });
+        }
+    };
 
     const LoadPokemon = async (offset, limit) => {
         for (let i = offset; i <= offset + limit; i++) {
@@ -69,19 +88,9 @@ function PokedexCards(){
 
     return(
         <>
-            <NavbarPokedex />
-            <section className="generation-filter">
-                <GenerationFilterButton gen="GEN 1" onClick="" />
-                <GenerationFilterButton gen="GEN 2" onClick="" />
-                <GenerationFilterButton gen="GEN 3" onClick="" />
-                <GenerationFilterButton gen="GEN 4" onClick="" />
-                <GenerationFilterButton gen="GEN 5" onClick="" />
-                <GenerationFilterButton gen="GEN 6" onClick="" />
-                <GenerationFilterButton gen="GEN 7" onClick="" />
-                <GenerationFilterButton gen="GEN 8" onClick="" />
-            </section>
+            <NavbarPokedex value={""} search={handleSearch} />
 
-            <section className="cards-container">
+            <section className="cards-container" id="pokedex">
                 {pokemon.map((data, index) => (
                 <div className="image-container" key={index}>
                     <div className={"sprite-container " + data.types[0].type.name}>
