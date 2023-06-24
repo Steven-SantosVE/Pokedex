@@ -1,8 +1,15 @@
 import React from "react";
 
-function NavbarPokedex({value, search}){
+function NavbarPokedex({value, search, toggleClicked}){
+
     return(
         <nav className="navbar-pokedex">
+            <div className="toggle-button" onClick={toggleClicked}>
+                <div className="navbar-toggle-button"></div>
+                <div className="navbar-toggle-button"></div>
+                <div className="navbar-toggle-button"></div>
+            </div>
+
             <ul className="navbar-items">
                 <a href="#pokedex">
                     <li>POKEDEX</li>
@@ -10,7 +17,7 @@ function NavbarPokedex({value, search}){
                 <a href="#">
                     <li>CHAT ROOM</li>
                 </a>
-                <a href="#">
+                <a href="#" className="favourites-button">
                     <li>FAVOURITES</li>
                 </a>
             </ul>
@@ -22,7 +29,7 @@ function NavbarPokedex({value, search}){
             onChange={search}
             // value={value}
             >
-            </input>
+            </input>            
         </nav>
     )
 }

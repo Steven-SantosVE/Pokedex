@@ -5,9 +5,11 @@ import "./PkmonType.css"
 
 let offset = 1
 let limit = 9
+let shown = true;
 
 function PokedexCards(){
     const [pokemon, setPokemon] = useState([])
+    // const [selectedPokemonIndexes, setSelectedPokemonIndexes] = useState([]);
     const effectRan = useRef(false)
 
     const cleanData = () => {
@@ -79,6 +81,7 @@ function PokedexCards(){
     useEffect(() => {
         if(effectRan.current === false){
             LoadPokemon(offset, limit)
+            document.querySelector(".toggled-navbar-pokedex").style.display = "none"
         }
 
         return () =>{
@@ -86,12 +89,43 @@ function PokedexCards(){
         }
     }, [])
 
+    // const favouriteGlow = (index) => {
+    //     if (selectedPokemonIndexes.includes(index)) {
+    //       setSelectedPokemonIndexes((prevIndexes) =>
+    //         prevIndexes.filter((i) => i !== index)
+    //       );
+    //     } else {
+    //       setSelectedPokemonIndexes((prevIndexes) => [...prevIndexes, index]);
+    //     }
+    // };
+
+    function showHiddenNavbar(){
+        const willShow = shown == true ? "flex" : "none";
+        document.querySelector(".toggled-navbar-pokedex").style.display = `${willShow}`
+        shown = !shown
+    }
+
     return(
         <>
-            <NavbarPokedex search={handleSearch} />
-            <section className="cards-container" id="pokedex">
+            <NavbarPokedex search={handleSearch} toggleClicked={showHiddenNavbar}/>
+
+            <div className="toggled-navbar-pokedex">
+                <ul className="navbar-items-toggled">
+                    <a href="index.html">
+                        <li>POKEDEX</li>
+                    </a>
+                    <a href="#">
+                        <li>CHAT ROOM</li>
+                    </a>
+                    {/* <a href="#" className="favourites-button">
+                        <li>FAVOURITES</li>
+                    </a> */}
+                </ul>
+            </div>
+
+            <section className={"cards-container"} id="pokedex">
                 {pokemon.map((data, index) => (
-                <div className="image-container" key={index}>
+                <div className={"image-container " + index} key={index} >
                     <div className={"sprite-container " + data.types[0].type.name}>
                         <img src={data.sprites.front_default} alt="pokemon image" className="pokemon-image" />
                     </div>
@@ -106,20 +140,22 @@ function PokedexCards(){
                 </div>
                  ))}
             </section>
+
             <div className="button-container">
                 <button 
                 id="prev-button"
                 className="buttons"
                 onClick={previous}
                 >
-                    {'Previous Page'}
+                {'Previous Page'}
                 </button> 
+
                 <button 
                 id="next-button"
                 className="buttons"
                 onClick={next}
                 >
-                    {'Next Page'}
+                {'Next Page'}
                 </button> 
             </div>
         </> 

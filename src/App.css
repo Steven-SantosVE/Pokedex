@@ -11,6 +11,9 @@ body{
     --grass:rgb(93, 255, 93);
     --fire:rgb(255, 69, 69);
     --water:rgb(81, 142, 255);
+    --electric:rgb(252, 255, 54);
+    --yellow:rgb(255, 217, 0);
+    --dyellow:rgb(187, 159, 0);
 }
 
 ::-webkit-scrollbar{
@@ -118,19 +121,24 @@ body{
     background-color: var(--water);
 }
 
+::-webkit-scrollbar{
+    scroll-behavior: smooth;
+}
+
 .navbar-pokedex{
     width: 100vw;
     height: 80px;
     margin: 0;
     display: flex;
     /* background-color:rgb(197, 197, 197); */
-    background-image: linear-gradient(45deg, var(--fire), var(--water), var(--grass));
+    background-color: var(--electric);
     justify-content: space-between;
     position: sticky;
 }
 
 .navbar-items{
     display: flex;
+    padding: 0;
 }
 
 .navbar-items > a{
@@ -143,10 +151,11 @@ body{
     text-align: center;
     align-items: center;
     transition: .1s ease-in-out;
+    border-radius: 1.5rem;
 }
 
 .navbar-items > a:hover{
-    background-color: var(--grass);
+    background-color: var(--yellow);
 }
 
 .navbar-items > a > li{
@@ -164,4 +173,82 @@ body{
     width: 20%;
     height: 45%;
     border-radius: 1rem;
+}
+
+/* feature to later be added */
+/* #glow{
+    box-shadow: 0rem 0rem 1.5rem   rgb(255, 255, 106);
+} */
+
+.favourites-button{
+    display: none;
+}
+
+
+/* toggled navbar styles */
+
+.toggle-button{
+    display: none;
+    margin: auto 0;
+    width: 45px;
+    height: 35px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.navbar-toggle-button{
+    margin: 5px;
+    width: 40px;
+    height: 6px;
+    background-color: white;
+    display: block;
+    border-radius: 1rem;
+}
+
+@media (max-width: 750px){
+    .toggle-button{
+        display: block;
+    }
+    .navbar-items > a > li{
+        display: none;
+    }
+    .navbar-items > a{
+        display: none;
+    }
+
+    .pokemon-searchbar{
+        width: 50%;
+    }
+}
+
+.navbar-items-toggled > a{
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    align-items: center;
+    border-radius: 1.5rem;
+}
+
+
+.navbar-items-toggled{
+    display: flex;
+    padding: 0;
+}
+
+.navbar-items-toggled > a > li{
+    list-style: none;
+    color: none;
+    margin: 0 auto;
+}
+
+.toggled-navbar-pokedex{
+    display: flex;
+    width: 100vw;
+    margin: 0;
+    background-color: var(--dyellow);
+    position: sticky;
+    justify-content: center;
 }
