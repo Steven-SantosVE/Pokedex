@@ -11,10 +11,10 @@ function NavbarPokedex({value, search, toggleClicked}){
             </div>
 
             <ul className="navbar-items">
-                <a href="#pokedex">
+                <a href="index.html">
                     <li>POKEDEX</li>
                 </a>
-                <a href="#">
+                <a href="chatroom.html">
                     <li>CHAT ROOM</li>
                 </a>
                 <a href="#" className="favourites-button">

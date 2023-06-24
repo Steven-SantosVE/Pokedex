@@ -79,9 +79,15 @@ function PokedexCards(){
     };
 
     useEffect(() => {
+        const handleWindowResize = () => {
+            document.querySelector(".toggled-navbar-pokedex").style.display = "none";
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+
         if(effectRan.current === false){
             LoadPokemon(offset, limit)
-            document.querySelector(".toggled-navbar-pokedex").style.display = "none"
+            handleWindowResize()
         }
 
         return () =>{
