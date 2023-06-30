@@ -9,6 +9,7 @@ function PokemonCardsInfo({arr}){
                     <img src={data.sprites.front_default} alt="pokemon image" className="pokemon-image" />
                 </div>
 
+                <p className="pokemon-id">#{data.id}</p>
                 <h1 className="pokemon-name">{data.name.toUpperCase()}</h1>
                 <p>HP: {data.stats[0].base_stat}</p>
                 <p>ATK: {data.stats[1].base_stat}</p>
