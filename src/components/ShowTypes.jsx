@@ -1,6 +1,7 @@
 import {React, useRef} from "react";
 
 let shown = true;
+let initialRotate = true;
 let running = true;
 
 function ShowTypes({setPokemon, pokemonTypes, cleanData}){ 
@@ -8,7 +9,6 @@ function ShowTypes({setPokemon, pokemonTypes, cleanData}){
         running = true;
 
         while(running == true){
-            cleanData()
             cleanData()
             const url = "https://pokeapi.co/api/v2/pokemon/";
             let response = await fetch(url + "?limit=1281&offset=0");
@@ -26,11 +26,20 @@ function ShowTypes({setPokemon, pokemonTypes, cleanData}){
         }
     };
 
+    function rotateButton(){
+        const rotate = initialRotate == true ? "rotate" : "";
+        document.querySelector(
+            ".deploy-filter-button"
+        ).className = `deploy-filter-button ${rotate}`;
+        initialRotate = !initialRotate;
+    }
+
     function hideToggableTypeButtons() {
+        rotateButton()
         //Hide the toggable navbar when the screen size has changed
         const willShow = shown == true ? "flex" : "none";
         document.querySelector(
-          ".type-buttons"
+            ".type-buttons"
         ).style.display = `${willShow}`;
         shown = !shown;
     }
@@ -44,7 +53,7 @@ function ShowTypes({setPokemon, pokemonTypes, cleanData}){
             <p>choose a specific type of pokemon you'd like to look for :)</p>
             
             <div className="deploy-filter-container">
-                <img className="deploy-filter-button" src="src/assets/deploy.png" onClick={hideToggableTypeButtons}></img>
+                <img className="deploy-filter-button" src="src/assets/deployBtn.png" onClick={hideToggableTypeButtons}></img>
             </div>
             
             <div className="type-buttons">
