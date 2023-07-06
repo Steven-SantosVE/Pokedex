@@ -53,7 +53,7 @@ function ShowTypes({setPokemon, pokemonTypes, cleanData}){
             <p>choose a specific type of pokemon you'd like to look for :)</p>
             
             <div className="deploy-filter-container">
-                <img className="deploy-filter-button" src="https://github.com/Steven-SantosVE/Pokedex/blob/main/src/assets/deployBtn.png" onClick={hideToggableTypeButtons}></img>
+                <img className="deploy-filter-button" src="https://github.com/Steven-SantosVE/Pokedex/blob/main/src/assets/deployBtn.png?raw=true" onClick={hideToggableTypeButtons}></img>
             </div>
             
             <div className="type-buttons">
